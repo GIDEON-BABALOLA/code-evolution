@@ -44,4 +44,118 @@ export default function Home() {
 // - handlng personalization(such as user preferences and themes)
 // - trackng (like recording and analyzing user behavior)
 
+// Redirects in Route Handlers
+// redirect()
 
+// Caching in route handlers
+// Route handlers are not cached by default but you can opt into caching when using the GET method
+// there is no caching during development
+// What if we want to update our data without rebuilding the entire application, well you can revalidate cached data using incremental static regeneration
+
+// Caching in route handlers
+// Route handlers are not cached by default but you can opt into caching when using the GET method
+// Caching only works with GET methods
+// Other HTTP methods like POST, PUT, or DELETE are never cached
+// If you're using dynamic functions like headers() and cookies(), or working with the request object in your GET method, caching won't be applied
+
+// Middleware
+// Middleware in Next.js is a powerful feature that lets you intercept and control the flow of requests and responses throughout your application.
+// It does this at a global level, significantly enhancing features like redirects, URL rewrites, authentication, headers, cookeis, and more
+// very easy to create, just add middleware.ts in the src folder
+
+// Middleware lets you specify paths where it should be active with two options
+// Custom matcher config
+// Conditional statements
+
+// Routing section summary
+// Route definition
+// Pages and layouts
+// Dynamic routes
+// Route groups
+// Linking and navigation
+// Loading and error states
+// Parallel and intercepting routes
+// Route handlers and middleware
+
+// Rendering in NextJS
+// Rendering is the process of transforming the component code you write into user interfaces that users can see and interact with
+// In Next.js, the tricky part to building a performant application is figuring out when and where this transformation should happen
+// CSR, SSR and RSCs?
+
+ /* Explanation of Each Term (you can include this below the comment): 
+CSR (Client-Side Rendering): The browser downloads a minimal HTML page and then uses JavaScript to render the content on the client side. Common in SPAs (Single Page Applications).
+
+SSR (Server-Side Rendering): The content is rendered on the server for each request, then sent as fully populated HTML to the browser. Good for SEO and fast first loads.
+
+RSCs (React Server Components): New in Next.js (especially from v13+), they allow you to run some components entirely on the server without sending their code to the client, improving performance and reducing bundle size.
+*/
+
+
+// Drawbacks of CSR
+// SEO
+// When search engines crawl your site, they're mainly looking at HTML content. But with CSR, your initial HTML is basically just an empty div - not great for search engines trying to figure out what your page is about
+
+// When you have a lot of nested components making API calls, the meaningful content might load too slowly for search engines to even catch it
+
+// Performance
+// Your browser ( the client ) has to do everything: fetch data, build the UI, make everything interactive.. that's a lot of work!
+
+// Server-side solutions
+// 1. Static Site Generation (SSG)
+// 2. Server-Side Rendering (SSR)
+// SSG happens during build time when you deploy your application to the server. This results in pages that are already rendered and ready to server. It's perfect for content that stays relatively stable, like blog posts
+
+// SSR, on the other hand, renders pages on-demand when the users request them. It's ideal for personalized content like social media feeds where the HTML changes based on who's logged in.
+
+// Drawbacks of SSR
+// 1 You have to fetch everything before you can show anything
+// Components cannot start rendering and then pause or "wait" while data is still being loaded
+// If a component needs to fetch data from a database or another source (like an API), this fetching must be completed before the server can begin rendering the page
+
+// 2 You have to load everything before you can hydrate anything
+// For successful hydration, where React adds interactivity to the server-rendered HTML, the component tree in the browser must exactly match the server-generated component tree
+// This means that all the Javascript for the components must be loaded on the client before you can start hydrating any of them
+
+// 3 You have to hydrate everything before you can interact with anything
+// React hydrates the component tree in a single pass, meaning once it starts hydrating, it won't stop until it's finished with the entire tree
+
+
+// Drawbacks of SSR - all or nothing waterfall
+// 1 We can't start rendering HTML untill all data is fetched on the server.
+// 2 We need to wait for all Javascript to load on the client before hydration can begin
+// 3 Every component needs to be hydrated before any of them become interactive
+// These issues create an "all-or-nothing" waterfall effect that is pretty inefficient, especially when some parts of your app are slower than others
+
+// Solutions to this
+// Suspense SSR architecture
+// Use the <Suspense> component to unlock two major SSR features
+// 1 HTML streaming on the server
+// 2 Selective hydration on the client
+
+// HTML streaming on the server
+// HTML streaming solves our first problem:
+// You don't have to fetch everything before you can show anything
+// If a particular section is slow and could potentially delay the initial HTML, no problem
+// It can seamlessly get integrated into the stream later when it's ready
+
+// The other hurdle
+// Even with faster HTML delivery, we can't start hydrating until we've loaded all the JavaScript for the main section
+// If that's a big chunk of code, we're still keeping users waiting from being able to interact with the page
+// solution
+// It lets you tell your bundler, "These parts of the code aren't urgent - split them into separate scripts."
+// Using `React.lazy` for code splitting separates your main section's code from the Javascript bundle
+// The browser can download React and most of your app's code independently, without getting stuck waiting for that main section's code.
+
+// Selective hydration on the client
+// By wrapping your main section in a `<Suspense>` component, you're not just enabling streaming but also telling React it's okay to hydrate other parts of the page before everything's ready
+// This is what we call selective hydration
+// It allows for the hydration of pats of the page as they become available, even before the rest of the HTML and the Javascript code are fully downloaded
+
+// React Server Components (RSC)
+// React Server Components  (RSC) represents a new architecture designed by the React team
+// This approach leverages the strengths of both server and client environments to optimize efficency, load times and interactivity
+
+// The architecture introduces a dual-component model
+// - Client Components
+// - Server Components
+// This distinction is based not on the components' functionality but rather on their execution environment and the specific systems they are designed to interact with.

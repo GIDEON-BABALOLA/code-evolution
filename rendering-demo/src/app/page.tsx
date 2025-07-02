@@ -218,3 +218,14 @@ export default function Home() {
 // Just like how we need to keep certain operations server side, it's equally crucial to keep some functionality strictly on the client side
 // Client-only code works with browser-specific features - think DOM manipulation, window object interaction, or localStorage operations
 // These features aren't available on the server, so we need to make sure such code runs only on the client side to avoid server-side rendering errors
+
+//Client Component Placement
+// The strategic placement of client components in the component tree, this is super important for optimizing the performance of your application
+
+// since server components can't handle state and interactivity, we need client components to fill this gap
+// The key recommendation here is to position thse client components lower in your component tree
+
+// Common misconception
+// When you mark a component with use client, it doesn't just affect that component, but also affect every child component in the component tree below it
+
+// Interleaving client and server components in nextJS

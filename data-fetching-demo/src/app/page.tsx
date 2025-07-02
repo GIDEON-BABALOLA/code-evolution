@@ -1,9 +1,10 @@
 import Image from "next/image";
-
+import { Search } from "@/components/search"
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <Search />
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -219,3 +220,47 @@ export default function Home() {
 // - It automatically prefetches loading UI
 // - It handles client-side navigation on form submission
 // - It provides progressive enhancement out of the box
+// No body is dumb, some people just don't know how to learn, also some people have the thought the right things in the wong way - word of the day
+// Advantages of Form Component
+// 1.) When the Form component becomes visible, it prefetches the loading UI associated with "/products-db" route
+// 2.) when a user submits the search, it instantly navigates to the products page client-side and the form data gets turned into URL params
+// 3.) It'll show the loading state while the search results are being fetched
+// 4.) Once the data is ready, the results are displayed in the UI
+// 5.) The form compoent also supports progressive enhancement out of the box, this means that even without Javascript, the form will still work even as a regular HTML form
+// 6.) This form also supports server actions
+// 7.) 
+
+
+// Data fetching and mutations summary
+// Fetch data in client components
+// Fetch data in server components with async/await
+// Handle loading and error states with loading.tsx and error.tsx
+// Fetching data directly from a database
+// Server actions for data mutations
+// Feedback with useFormStatus and useActionState hook
+// Separating server actions for use in client components
+// Pass additional data to perform update and delete operations
+// perform optimistic updates
+// Form component
+
+// Next section is Authentication
+// Most apps resolve around users
+// When building for users, we need to consider three fundamental concepts:
+// - Identity - verifying who someone is through authentication
+// - Sessions - keep track of user's logged-in state across requests
+// - Access - controls what they can do
+// In developer terms, we call these authentication, session management, and authorization
+// Now nextJS handles this differently from traditional react apps
+// With Next.js, you've got to protect your app from three different angles: client-side, server-side, and API routes
+
+// Implementing Authentication
+// Let users sign up
+// Give them a way to sign in
+// Enable them to manage their account (password changes, email updates, etc.)
+// Show or hide UI elements based on whether they're logged in
+// Protect certain routes depending on authentication status 
+// Access session and user data when needed
+// set up role-based access control (admin, editor, and so on)
+// provide a way to sign out
+// Building all these from scratch will take forever, that is why nextJS themseleves even recommend using a library
+// The docs stated that "While you can implement a custom auth solution, for increased security, we recommend using an authentication library" This brings us too clerk, free for almost 10,000 active monthly users

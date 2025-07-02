@@ -3,6 +3,7 @@
 import { useOptimistic } from "react";
 import  Link  from "next/link";
 import { removeProduct } from "@/actions/products";
+import Form from "next/form";
 export type Product = {
     id: number;
     title: string;
@@ -29,7 +30,7 @@ return (
   <p>{product.description}</p>
   <p className="text-lg font-medium">${product.price}</p>
   {/* Here we are unable to use onClick, because we do not want to turn our server component into a client component, so we will go with a form */}
-  <form action={removeProductById.bind(null, product.id)}> 
+  <Form action={removeProductById.bind(null, product.id)}> 
     {/* This makes productId available as the first argument to remove product */}
   <button
   type="submit"
@@ -37,7 +38,7 @@ return (
   >
 Delete
   </button>
-  </form>
+  </Form>
     </li>
 ))}
     </ul>

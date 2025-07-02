@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import { Counter } from "@/components/counter";
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -39,6 +39,7 @@ export default function Home() {
               width={20}
               height={20}
             />
+            <Counter />
             Deploy now
           </a>
           <a
@@ -101,3 +102,34 @@ export default function Home() {
     </div>
   );
 }
+
+
+// Conditional User Rendering
+// Using clerk signed in and signed out component
+// Protecting Routes
+
+// Read Session and User Data
+// When building web applications, we often need to access user and session data to personalize experiences and track user actions with their account, to read user and session data, clerk provides two helpers -  Auth and current user
+
+// Role Based Access Control
+// User roles and permissions
+// Most apps need more than just checking if someone's logged in or not
+// They need different permission levels for different users
+// How to implement role-based access control (RBAC) using clerk
+
+// Configure clerk to make user roles available in our session token
+// clerk gives us something called user metadata, which is like a storage space for extra user information
+// We'll use it to store user roles
+// publicMetadata because it's read-only in the browser, making it super secure for storing sensitive information like user roles
+// to build a basic RBAC system, we need to make sure this publicMetadata is readily available in the session token
+// We can quickly check user roles without having to make extra network requests every time we need this information
+// Add this JSON to configure session token
+ /* {
+	"metadata": "{{user.public_metadata}}"
+} */
+// now we need to create a global typescript definition to work with roles
+
+// Go to your users account under clerk
+// and add { "role" : "admin "} to the public section
+
+// Customizing Clerk Components

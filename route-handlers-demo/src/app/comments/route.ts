@@ -4,7 +4,7 @@ import { comments } from "./data";
 //     return Response.json(comments)
 // }
 // Now working with query parameters,
-//  in this context we need request type of NextRequest
+// in this context we need request type of NextRequest
 export async function GET(request: NextRequest){
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get("query")

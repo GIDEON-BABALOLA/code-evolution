@@ -210,7 +210,7 @@ export default function Home() {
 // Context providers
 // context providers typically live near the root of an application to share global state and logic
 // For example, tour application's theme
-// However, Teact context isn't supported in server components
+// However, react context isn't supported in server components
 // If you try to crate a context at your applicatio's root, you'll run into an error
 // The solution is to create your context and render its provider inside a dedicated client component
 

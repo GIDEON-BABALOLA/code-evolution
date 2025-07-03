@@ -211,7 +211,7 @@ RSCs (React Server Components): New in Next.js (especially from v13+), they allo
 // RSC key takeways
 // React Server Components offer a new approach to building React apps by separating components into two: server components and client components
 // Server components run exclusively on the server - they fetch data and prepare content without sending code to the browser
-// This makes your ap faster because users download less code
+// This makes your app faster because users download less code
 // However, they can't handle any interactions
 // Client Components, on the other hand, run in the browser and manage all the interactive parts like clicks and typing
 // They also get an initial server render for faster page loads
